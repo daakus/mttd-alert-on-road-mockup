@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import TopBar from '../components/ui/TopBar';
 import VideoPlayer from '../components/video/VideoPlayer';
+import Onboarding from './Onboarding';
 import { Play } from 'lucide-react';
 
 const DailyAudioTips: React.FC = () => {
@@ -42,6 +43,16 @@ const DailyAudioTips: React.FC = () => {
 
 const HomeFeed: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'videos' | 'audio'>('videos');
+
+  const [isOnboardingComplete, setIsOnboardingComplete] = useState(false);
+
+  const handleOnboardingComplete = () => {
+    setIsOnboardingComplete(true);
+  };
+
+  if (!isOnboardingComplete) {
+    return <Onboarding onComplete={handleOnboardingComplete} />;
+  }
 
   const videos = [
     {
